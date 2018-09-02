@@ -1,0 +1,103 @@
+****************
+* Project Double Linked List
+* Class CS22-003
+* Date 4/5/2018
+* Van Nguyen
+**************** 
+
+OVERVIEW:
+
+Create a fully functional double linked list using all the given methods and implements all the List Iterator methods.
+
+INCLUDED FILES:
+
+ List the files required for the project with a brief
+ explanation of why each is included.
+
+ e.g.
+ * IndexedUnsortedList.java - interface of IUDoubleLinkedList.java
+ * LinearNode.java - Create linear nodes for a double linked list.
+ * IUDoubleLinkedList.java - allows the creation of a double linked list.
+ * ListTester.java - Tests different scenarios of the double linked list.
+ * README - this file
+
+COMPILING AND RUNNING:
+
+ From the directory containing all source files, compile the
+ driver class (and all dependencies) with the command:
+ $ javac ListTester.java
+
+ Run the compiled class file with the command:
+ $ java ListTester
+
+ Console output will give the results of the tested scenarios
+
+PROGRAM DESIGN AND IMPORTANT CONCEPTS:
+
+Create a list where each element is embedded in a node and each nodes have 2 pointers. These
+pointers point to the next and previous node. The methods to modify the list contains:
+add, remove, set similarly to the single linked list. However, the double linked list has
+a list iterator that have its own add, set, and remove method that can apply to the list's methods for
+code minimization. 
+
+We created the IUDoubleLinkedList class that implements IndexedUnsortedList interface, then modified all the m
+the methods according to the java doc given.For the list iterator, the class implements ListIterator and 
+fullfilled all the methods according to Java API.After the modification of IUDoubleLinkedList class,
+we will add in test cases for double linked list provided by the instructor with addded test cases
+for TwoElementList and ThreeElementList. 
+
+This program works off of IUDoubleLinkedList.java to make a collection, after
+this has been done the ListTester.java file will test different scenarios of the 
+methods written in the previously stated class.
+
+TESTING:
+
+Most testing is done in the ListTester class. This class tests all the methods in the 
+IUDoubleLinkedList.java by putting them into 82 different scenario including tests for
+list iterator. Each scenario will create a collection by using a certain method, then
+after the list is made, we will run tests that examines all the methods on the newly created 
+list. The primary purpose of the ListTester is to make sure that all methods were written to 
+pass these tests. There are 14338 tests in the ListTester that the collection pass, which is 100%.
+
+DISCUSSION:
+
+The main issues I encountered in this program was implementing all the methods of the list iterator since
+I tried to do it during spring break. I failed 167 tests because of the NullPointerException in the remove methods.
+The reasons that I got the exception was because I disconnected and connected nodes in the wrong order. Running debug
+did not help me in this case as I spent 2 hours or more trying to see where I was wrong, but it was hopeless. 
+I attended the lecture on Tuesday 4/3/2018 and when the instructor went through the remove method in the general case part(as
+he was telling us to be careful when dealing with nodes), my head poped up with the idea of checking my generation of node pointers.
+At that point, I realized that I messed it up by trying to use the reference to the nodes that I have earlier disconnected and made it point
+to another one. I fixed the bug within 7 minutes after the cautious statement in class.
+Then for the add method, I used nextIndex instead of nextNode in the code below:
+if (isEmpty()) {
+				head = tail = node;
+} else if (nextindex==size) { 
+				node.setPrevious(tail);
+				tail.setNext(node);
+				tail = node;
+
+				//Checks for the beginning of the list.
+			} else if (nextindex== 0) {
+				node.setNext(head);
+				head.setPrevious(node);
+				head = node;
+				node.setPrevious(null);
+				//General case for all other nodes.
+			} else { 
+
+				node.setNext(nextNode);
+				node.setPrevious(nextNode.getPrevious());
+				nextNode.getPrevious().setNext(node);
+				nextNode.setPrevious(node);
+			}	
+
+My List Tester class failed even more. However, after I ran debug through it, I found out that in 
+the first else if condition, I put nextindex==size-1 instead of nextindex==size.It took me nearly an hour to 
+identify and went through the documentation of add in Java API online to fix the bug.Once these were written the rest of the methods flowed nicely and the rest
+of the project was not too much different from the single linked list.
+
+Working through this process, I felt less frightened when I heard about List Iterator or Iterator. It helped me 
+develop a sense of accounting for all cases that could possibly happen when you are dealing with a double linked list.
+
+
