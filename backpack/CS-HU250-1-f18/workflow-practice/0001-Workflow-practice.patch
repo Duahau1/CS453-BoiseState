@@ -1,0 +1,20 @@
+From 3b7330911289f7135a2ecbe34de793b5a8b4f8d2 Mon Sep 17 00:00:00 2001
+From: vannguyen <vannguyen599@u.boisestate.edu>
+Date: Sun, 2 Sep 2018 12:39:18 -0600
+Subject: [PATCH] Workflow practice
+
+---
+ backpack/CS-HU250-1-f18/workflow-practice/vannguyen.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 backpack/CS-HU250-1-f18/workflow-practice/vannguyen.txt
+
+diff --git a/backpack/CS-HU250-1-f18/workflow-practice/vannguyen.txt b/backpack/CS-HU250-1-f18/workflow-practice/vannguyen.txt
+new file mode 100644
+index 0000000..7d9cb48
+--- /dev/null
++++ b/backpack/CS-HU250-1-f18/workflow-practice/vannguyen.txt
+@@ -0,0 +1 @@
++this is van nguyen
+-- 
+2.18.0-rc1
+
