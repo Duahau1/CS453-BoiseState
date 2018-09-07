@@ -7,9 +7,8 @@ all: myprog
 	gcc $(CFLAGS) -c $< -o $@ 
 
 myprog: $(LINK)
-
-	gcc $(CFLAGS) $(LINK) -o myExecutableProgram
+	gcc $(CFLAGS) $(LINK) -o myprog
 
 clean:
-	rm -f *.o myExecutableProgram
+	rm -f *.o myprog
 
