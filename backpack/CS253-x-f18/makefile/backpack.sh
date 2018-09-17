@@ -117,9 +117,9 @@ if [ "$?" -gt 0 ] ; then
 fi
 
 #Verify remake of the default target does nothing
-logMsg $LINENO "NOTE:  Grading remake of default target"
-result=$( make )
-deductMissingString $LINENO "$result" "Nothing to be done" 3
+#logMsg $LINENO "NOTE:  Grading remake of default target"
+#result=$( make )
+#deductMissingString $LINENO "$result" "Nothing to be done" 3
 
 #Verify the executable exists and will run and exit with a good status code
 logMsg $LINENO "NOTE:  Grading executable"
