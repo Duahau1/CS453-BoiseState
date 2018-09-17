@@ -3,7 +3,7 @@
 <><><><><><><><><><><><><><><><><><><><><><><><><><><>
 ./backpack.sh output follows:
 <><><><><><><><><><><><><><><><><><><><><><><><><><><>
-[93]  NOTE:  Begin grading on Mon Sep 10 22:24:01 MDT 2018 using temp file, /tmp/jimconrad720903  -- score=30
+[93]  NOTE:  Begin grading on Mon Sep 17 14:54:26 MDT 2018 using temp file, /tmp/jimconrad54467  -- score=30
 [96]  NOTE:  Grading expected Makefile name  -- score=30
 [100]  NOTE:  Grading submission cleaned of binaries  -- score=30
 [112]  NOTE:  Grading make default target  -- score=30
