@@ -105,3 +105,56 @@ gcc -std=c99 -Wall -c f1.c -o f1.o
 rm -f *.o myprog
 rm -f *.o myprog
 Grade:  30 points
+
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+./backpack.sh output follows:
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[93]  NOTE:  Begin grading on Fri Sep 21 13:27:01 MDT 2018 using temp file, /tmp/jimconrad377909  -- score=30
+[96]  NOTE:  Grading expected Makefile name  -- score=30
+[100]  NOTE:  Grading submission cleaned of binaries  -- score=30
+[112]  NOTE:  Grading make default target  -- score=30
+[125]  NOTE:  Grading executable  -- score=30
+[134]  NOTE:  Grading make all  -- score=30
+[140]  NOTE:  Grading make myprog  -- score=30
+[147]  NOTE:  Grading source file changes  -- score=30
+[158]  NOTE:  Grading header file changes  -- score=30
+[169]  NOTE:  Grading use of gcc -Wall and c99  -- score=30
+[175]  NOTE:  Grading make clean  -- score=30
+[184]  NOTE:  Grading make clean in a clean directory  -- score=30
+[198]  NOTE:  Finished grading  -- score=30
+Grade:  30 points
+
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+Build output follows:
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+
+gcc -std=c99 -Wall -c f1.c -o f1.o 
+gcc -std=c99 -Wall -c f2.c -o f2.o 
+gcc -std=c99 -Wall -c f3.c -o f3.o 
+gcc -std=c99 -Wall -c main.c -o main.o 
+gcc -std=c99 -Wall f1.o f2.o f3.o main.o -o myprog
+Invoking functions f1, f2 and f3
+Hello! You have invoked f1().
+Hello! You have invoked f2().
+Hello! You have invoked f3().
+It works!
+gcc -std=c99 -Wall -c f1.c -o f1.o 
+gcc -std=c99 -Wall -c f2.c -o f2.o 
+gcc -std=c99 -Wall -c f3.c -o f3.o 
+gcc -std=c99 -Wall -c main.c -o main.o 
+gcc -std=c99 -Wall f1.o f2.o f3.o main.o -o myprog
+gcc -std=c99 -Wall -c f1.c -o f1.o 
+gcc -std=c99 -Wall -c f2.c -o f2.o 
+gcc -std=c99 -Wall -c f3.c -o f3.o 
+gcc -std=c99 -Wall -c main.c -o main.o 
+gcc -std=c99 -Wall f1.o f2.o f3.o main.o -o myprog
+make: Nothing to be done for `all'.
+gcc -std=c99 -Wall -c f1.c -o f1.o 
+make: Nothing to be done for `all'.
+gcc -std=c99 -Wall -c f1.c -o f1.o 
+rm -f *.o myprog
+rm -f *.o myprog
+Grade:  30 points
