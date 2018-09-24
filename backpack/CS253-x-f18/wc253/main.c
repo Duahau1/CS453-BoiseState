@@ -107,7 +107,7 @@ int main(int argc, char **argv)
 }
 
 
-for (int index=1; index<argc;++index){
+for (int index=1; index<argc&&check!=true ;++index){
 
 fileExists(argv[index]);  
 if(check==false){
@@ -116,7 +116,7 @@ if(check==false){
 }
 
 
-if (pos>argc){
+if (check==false){
   printf("%s","File not found\n");
   return 1;
 }
