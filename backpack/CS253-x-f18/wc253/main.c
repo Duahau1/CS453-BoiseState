@@ -9,6 +9,7 @@ static bool do_line=false;
 static bool do_word=false;
 static bool do_byte=false;
 static bool check =false;
+static int pos=1;
 static int w=0;
 static int l=0;
 static int ch=0;
@@ -104,11 +105,22 @@ int main(int argc, char **argv)
  usage();
    return 1;
 }
-fileExists(argv[1]);
-if (check== false){
+
+
+for (int index=1; index<argc;++index){
+
+fileExists(argv[index]);  
+if(check==false){
+++pos;
+      } 
+}
+
+
+if (pos>argc){
   printf("%s","File not found\n");
   return 1;
 }
+
 
 char option;
 while( (option=getopt(argc, argv, "wlc")) != -1) {
@@ -139,14 +151,14 @@ default:
 return 1;
   
 }
-Counting(argv[1]);
+Counting(argv[pos]);
 } 
-if(do_word){
-printf(" %d ",w);
-  
-}
 if(do_line){
 printf(" %d ",l);
+  
+}
+if(do_word){
+printf(" %d ",w);
   
 }
 if(do_byte){
@@ -156,14 +168,18 @@ if(do_byte){
 
 if (!do_word && ! do_line && ! do_byte){
       do_line = do_word = do_byte = true;
-      Counting(argv[1]);
-      printf(" %d %d %d ",w,l,ch);
+      Counting(argv[pos]);
+      printf(" %d %d %d ",l,w,ch);
     }
       
 
 for (int index = optind; index < argc ; index++){
 printf (argv[index]);
 }
+
+
+
+
 printf("\n");
 return 0;  //Error exit status
   
