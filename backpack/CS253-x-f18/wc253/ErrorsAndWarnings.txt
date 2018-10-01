@@ -1,0 +1,4 @@
+ 0 0 0 /dev/null
+ 769 data
+./wc253: invalid option -- 'x'
+Unknown option -x
