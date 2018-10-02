@@ -3,6 +3,7 @@ smash -- A Simplified Shell
 
 ##SYNOPSIS
 
+
 ##DESCRIPTION
 
 ##FILES
