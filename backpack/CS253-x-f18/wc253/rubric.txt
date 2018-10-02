@@ -1,0 +1,49 @@
+
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+./backpack.sh output follows:
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[122]  NOTE:  Begin grading on Tue Oct  2 13:40:05 MDT 2018  -- score=50
+[123]  NOTE:  Using temp file, /tmp/jimconrad862688  -- score=50
+[126]  NOTE:  Grading expected Makefile name  -- score=50
+[133]  NOTE:  Grading make default target  -- score=50
+[141]  NOTE:  Grading expected executable program, wc253, exists  -- score=50
+[145]  Note:  Grading exit status given an empty dataset, /dev/null  -- score=50
+[153]  Note:  Grading wc253 -l data  -- score=50
+[156]  ERROR: wc253 -l data exited abnormally  -- score=50
+[161]  Note:  Grading invalid -x option  -- score=45
+[169]  Note:  Grading output from wc253 data  -- score=45
+[171]  ERROR:  Could not grep 769\s in data.result  -- score=43
+[172]  ERROR:  Could not grep \s5770\s in data.result  -- score=41
+[173]  ERROR:  Could not grep \s34553\s in data.result  -- score=39
+[174]  ERROR:  Could not grep \sdata in data.result  -- score=37
+[177]  Node: Grading file, data with -l option  -- score=37
+[179]  ERROR:  Could not grep 769\sdata in datal.result  -- score=35
+[182]  Note:  Grading file, data1  -- score=35
+[184]  ERROR:  Could not grep 4\s in data1.result  -- score=33
+[185]  ERROR:  Could not grep \s30\s in data1.result  -- score=31
+[186]  ERROR:  Could not grep \s164\s in data1.result  -- score=29
+[187]  ERROR:  Could not grep \sdata1 in data1.result  -- score=27
+[190]  Node: Grading file, data1 with -l  -- score=27
+[192]  ERROR:  Could not grep 4\sdata1 in datal1.result  -- score=25
+[195]  Note:  Grading file, data2  -- score=25
+[197]  ERROR:  Could not grep 9\s in data2.result  -- score=23
+[198]  ERROR:  Could not grep \s25\s in data2.result  -- score=21
+[199]  ERROR:  Could not grep \s171\s in data2.result  -- score=19
+[200]  ERROR:  Could not grep \sdata2 in data2.result  -- score=17
+[203]  Note: Grading file, data2 with -l  -- score=17
+[205]  ERROR:  Could not grep 9\sdata2 in datal2.result  -- score=15
+[208]  Note:  Grading make clean  -- score=15
+[217]  NOTE:  Finished grading  -- score=15
+Grade:  15 points
+
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+Build output follows:
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+
+gcc -Wall -std=c99 -g   -c -o main.o main.c
+gcc -Wall -std=c99 -g main.o -o wc253
+rm -f *.o wc253
+Grading finished.  Results are in file, ./grading_results_instructor
