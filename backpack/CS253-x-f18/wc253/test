@@ -1,0 +1,17 @@
+[122]  NOTE:  Begin grading on Tue Oct  2 16:20:36 MDT 2018  -- score=50
+[123]  NOTE:  Using temp file, /tmp/vannguyen5996198  -- score=50
+[126]  NOTE:  Grading expected Makefile name  -- score=50
+[133]  NOTE:  Grading make default target  -- score=50
+[141]  NOTE:  Grading expected executable program, wc253, exists  -- score=50
+[145]  Note:  Grading exit status given an empty dataset, /dev/null  -- score=50
+[153]  Note:  Grading wc253 -l data  -- score=50
+[161]  Note:  Grading invalid -x option  -- score=50
+[169]  Note:  Grading output from wc253 data  -- score=50
+[177]  Node: Grading file, data with -l option  -- score=50
+[182]  Note:  Grading file, data1  -- score=50
+[190]  Node: Grading file, data1 with -l  -- score=50
+[195]  Note:  Grading file, data2  -- score=50
+[203]  Note: Grading file, data2 with -l  -- score=50
+[208]  Note:  Grading make clean  -- score=50
+[217]  NOTE:  Finished grading  -- score=50
+Grade:  50 points
