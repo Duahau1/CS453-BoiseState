@@ -1,0 +1,28 @@
+
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+./backpack.sh output follows:
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[141]  NOTE:  Begin grading on Tue Oct 16 16:14:00 MDT 2018  -- score=80
+[142]  NOTE:  Using temp file, /tmp/jimconrad1009038  -- score=80
+[146]  NOTE:  Checking for binary files  -- score=80
+[151]  NOTE:  Grading the Makefile  -- score=80
+[160]  Note:  Grading the build  -- score=80
+[168]  Note:  Grading smash exits normally with EOF input  -- score=80
+[177]  Note:  Grading the exit command  -- score=80
+[186]  Note:  Grading the cd command  -- score=80
+[192]  Note:  Grading stderr message for cd to a non-existent directory  -- score=80
+[205]  Grading token parsing per the assignment specification  -- score=80
+[220]  Note:  Grading make clean  -- score=80
+[230]  NOTE:  Finished grading  -- score=80
+Grade:  80
+
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+Build output follows:
+<><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+
+gcc -std=c99 -Wall smash.c -o smash
+$$rm -f *.o smash
+Grading finished.  Results are in file, ./grading_results_instructor
