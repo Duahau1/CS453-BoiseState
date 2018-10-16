@@ -58,7 +58,7 @@ TARGETS
 * all        -- Build everything without debugging
 * smash      -- Build the smash project
 * debug      -- Build a debugging version
-* valgrind   -- Build debbug and then execute under watchful eye f valgrind
+* valgrind   -- Build debbug and then execute under watchful eye of valgrind
 * clean      -- Remove build artifacts
 
 PREREQUISITE
