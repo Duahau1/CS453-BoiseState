@@ -3,20 +3,28 @@
 #include<stdlib.h>
 #include<unistd.h>
 #define MAXLINE 4096
+#include "history.h"
 
 
+void printToken(char *a);
+
+void successChange(char *b);
 
 int main()
 {
-char buff1[MAXLINE];
+  struct hist *history;
+  history=init_history();
+  
+ char buff1[MAXLINE];
 char buff2[MAXLINE];
-fprintf(stderr,"$");
+  fprintf(stderr,"$");
 //Print $
 while (fgets(buff1, MAXLINE, stdin) != NULL) {
-if (strlen(buff1)==1){
+if(strlen(buff1)==1){
 fprintf(stderr,"$");
+  
 }
-else {
+else{
 int count=strlen(buff1);
 count--;
 buff1[count]='\0'; //replace newline with NULL
@@ -25,40 +33,72 @@ strncpy(buff2,buff1,MAXLINE);
 
 char *token = strtok(buff2," ");
 
-if (strcmp("exit",token)==0) {
- exit(0);
-}
-if(strcmp("cd",token)==0){
+add_history(history,buff1);
 
-token=strtok(NULL," ");
-int dir=chdir(token);
-char buffer[MAXLINE];
-if(dir ==0){
-char* dirch = getcwd(buffer,sizeof(buffer));
+
+if (strcmp("exit",token)==0) {
+  clear_history(history);
+  exit(0);
+}
+else if(strcmp("cd",token)==0){
+char *ch=strtok(buff1," ");
+
+  successChange(ch);  
+
+}
+
+else if (strcmp("history",token)==0){
+print_history(history);
   
+}
+
+else {
+
+printToken(token);
+
+}  
+
+fprintf(stderr,"$");
+}
+  
+}
+
+clear_history(history);
+
+return 0;
+}
+
+
+void successChange(char *token){
+token = strtok(NULL," ");
+if (token==NULL){
+printf("error: Enter the valid path\n");
+  
+}
+else{
+int dir=chdir(token);
+if(dir ==0){
+
+char *dirch=getcwd(NULL,0);
 printf("%s\n", dirch);  
+free(dirch);
 }
 else{
 printf("error: ");
 printf(token);
-printf(" does not exist\n");
+printf(" does not exist\n");  
+} 
 }
   
 }
-else {
-char* token = strtok(buff1," ");
+
+void printToken(char *token){
 int i = 0;
 while (token != NULL){
 printf ("[%d] %s\n",i, token);
 token = strtok (NULL, " ");
 i++;
-}  
-
   
 }
-fprintf(stderr,"$");
-}
-}
-
-return 0;
+i=0;
 }
