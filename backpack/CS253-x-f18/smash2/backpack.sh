@@ -263,8 +263,8 @@ if [ "$?" != 0 ]; then
     logMsg $LINENO "WARNING:  valgrind not installed/found on this computer"
 fi
 timeout 10s valgrind ./$EXE <basicHistory.in >$tmpFile 2>&1
-deductnGrep $LINENO "Invalid\\s*write"         $tmpFile $letterGrade
-deductnGrep $LINENO "definitely lost\\s*[1-8]" $tmpFile $letterGrade
+deductGrep $LINENO "Invalid\\s*write"         $tmpFile $letterGrade
+deductGrep $LINENO "definitely lost\\s*[1-8]" $tmpFile $letterGrade
 
 #Grade make clean-----------------------------------------------------------------
 logMsg $LINENO "Note:  Grading make clean"
