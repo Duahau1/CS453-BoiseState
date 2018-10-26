@@ -12,17 +12,16 @@ void successChange(char *b);
 
 int main()
 {
-  struct hist *history;
-  history=init_history();
+struct hist *history;
+history=init_history();
   
- char buff1[MAXLINE];
+char buff1[MAXLINE];
 char buff2[MAXLINE];
-  fprintf(stderr,"$");
+fprintf(stderr,"$");
 //Print $
 while (fgets(buff1, MAXLINE, stdin) != NULL) {
 if(strlen(buff1)==1){
-fprintf(stderr,"$");
-  
+fprintf(stderr,"$");  
 }
 else{
 int count=strlen(buff1);
@@ -34,7 +33,6 @@ strncpy(buff2,buff1,MAXLINE);
 char *token = strtok(buff2," ");
 
 add_history(history,buff1);
-
 
 if (strcmp("exit",token)==0) {
   clear_history(history);
@@ -67,7 +65,6 @@ clear_history(history);
 
 return 0;
 }
-
 
 void successChange(char *token){
 token = strtok(NULL," ");

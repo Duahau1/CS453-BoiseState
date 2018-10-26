@@ -1,0 +1,19 @@
+[156]  NOTE:  Begin grading on Thu Oct 25 19:20:01 MDT 2018  -- score=80
+[157]  NOTE:  Using temp file, /tmp/vannguyen599106754  -- score=80
+[166]  NOTE:  Checking for binary files  -- score=80
+[171]  NOTE:  Grading the Makefile  -- score=80
+[180]  Note:  Grading the build  -- score=80
+[187]  Note:  Grading smash exits normally with EOF input  -- score=80
+[195]  Note:  Grading the exit command  -- score=80
+[203]  Note:  Grading the cd command  -- score=80
+[208]  Note:  Grading stderr message for cd to a non-existent directory  -- score=80
+[213]  Note:  Grading a really long invalid command  -- score=80
+[228]  Note:  Grading token parsing per the assignment specification  -- score=80
+[244]  Note:  Grading required function names in history.c  -- score=80
+[251]  Note:  Grading history command  -- score=80
+[260]  Note:  Grading valgrind results  -- score=80
+[266]  ERROR:  Could not grep Invalid\s*write in /tmp/vannguyen599106754  -- score=72
+[267]  ERROR:  Could not grep definitely lost\s*[1-8] in /tmp/vannguyen599106754  -- score=64
+[270]  Note:  Grading make clean  -- score=64
+[280]  NOTE:  Finished grading  -- score=64
+Grade:  64

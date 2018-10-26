@@ -16,12 +16,10 @@ struct Cmd **cmdArray;
   
 };
 struct hist* init_history();
-
 void add_history(struct hist * ,char *);
 
 void clear_history(struct hist *);
 
 void print_history(struct hist *);
-
 
 #endif /* __MYHEADER_H */
