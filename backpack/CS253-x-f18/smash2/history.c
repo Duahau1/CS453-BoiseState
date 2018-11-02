@@ -41,6 +41,8 @@ history->index=0;
 newCm->cmd =(char *)malloc(sizeof(char*)*MAX_LINE);
 
 strcpy(newCm->cmd,token);
+//newCm->cmd=token;
+
 history->cmdArray[history->index]=newCm;
 history->index++;  
 }
