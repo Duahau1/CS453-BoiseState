@@ -53,9 +53,11 @@ Given no arguments, the program will print out $ until either you terminate the 
 * smash.c   -- The source code for the smash project
 * history.h -- The header file that contains function prototypes and structs that are implemented in history.c
 * history.c -- The source code that implements all the back-end of the history command line
-* backpack.sh -- Backpack's smash1 autograder
+* backpack.sh -- Backpack's smash2 autograder
 * test.in -- Test data used by autograder
 * test.out -- The expected output given that test data
+* basicHistory.in -- The test data used by the auto grader
+* big.in --   The test data used by the auto grader
 
 ##INSTALLATION
 
