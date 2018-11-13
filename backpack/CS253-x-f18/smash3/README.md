@@ -61,6 +61,7 @@ Given no arguments, the program will print out $ until either you terminate the 
 * test.out -- The expected output given that test data
 * basicHistory.in -- The test data used by the auto grader
 * big.in --   The test data used by the auto grader
+* zombieCheck --The test data for hunting zombies
 
 ##INSTALLATION
 
