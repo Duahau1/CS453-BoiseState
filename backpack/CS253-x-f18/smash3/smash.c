@@ -76,7 +76,7 @@ if(pid==0){
 execvp(cmdA[0],cmdA);
 
 printf("Error: Enter a valid command line\n");
-clear_history(history);
+//clear_history(history);
 free(cmdA); 
 exit(1);
 }  
