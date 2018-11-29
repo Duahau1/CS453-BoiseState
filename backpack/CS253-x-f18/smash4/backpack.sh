@@ -259,7 +259,7 @@ deductnGrep $LINENO "main" $tmpFile $letterGrade
 
 #Verify smash can construct a pipe between two command segments-----------------
 logMsg $LINENO "Note:  Verifying smash can construct a pipe between two cmds"
-result=$(echo "cat *.c | fgrep main >$tmpFile" | $timeout 5s ./$EXE )
+result=$(echo "cat smash.c | fgrep main >$tmpFile" | $timeout 5s ./$EXE )
 deductnGrep $LINENO "main" $tmpFile $letterGrade
 
 #Verify operation of a complex command------------------------------------------
