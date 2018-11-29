@@ -254,7 +254,7 @@ deductMissingString $LINENO "$result" "int" $letterGrade
 
 #Verify that smash can redirect stdout for a simple command---------------------
 logMsg $LINENO "Note:  Verifying redirection of stdout in a simple command"
-echo "fgrep main smash.c >$tmpFile" | $timeout 5s ./$EXE
+result=$(echo "fgrep main smash.c >$tmpFile" | $timeout 5s ./$EXE)
 deductnGrep $LINENO "main" $tmpFile $letterGrade
 
 #Verify smash can construct a pipe between two command segments-----------------

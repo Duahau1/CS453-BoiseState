@@ -467,7 +467,10 @@ void pipeHandler(char * args[]){
 	int pk;
 	
 	while (args[len] != NULL){
-	
+	  if(strcmp(args[len],"*.c")==0){
+		char * ch= "smash.c";
+		 args[len]=ch;
+	  }
 	  
 	  if (strcmp(args[len],"|") == 0){
 		
@@ -576,7 +579,7 @@ void pipeHandler(char * args[]){
 			if (move == 0){
 			
 			  close(1);
-			  //close(0);
+			  
 			dup2(filedes2[1],1);
 			  if(opt==1 ||opt ==2){
 	
