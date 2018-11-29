@@ -19,14 +19,13 @@
 void printToken(char *a);
 char* strncpy_safe(char *dst, const char *src, size_t len);
 void successChange(char *b);
+void myHandle(int hand);
 void pipeHandler(char * args[]);
 char ** argument_sep(char *line);
 char ** chop_exe(char *line);
 char target1[65];
 char target2[65];
 void fileIO(char *args[],char* inputFile, char*outputFile,int option);
-void myHandle1(int a);
-void myHandle2(int b);
 bool level=false;
 bool need =false;
 bool attach =true;
@@ -35,31 +34,29 @@ int on, off;
  char in[65];
  char output[65];
 int waits, status;
-char buff1[MAXLINE];
-char buff2[MAXLINE];
-char buff3[MAXLINE];
 
 int main()
 {
 
 
-
+  
 char **cmdA;
 char **cmdB;
-//pid_t pid;
+
 struct hist *history;
 history=init_history();
 
 
-
+char buff1[MAXLINE];
+char buff2[MAXLINE];
+char buff3[MAXLINE];
 
 fprintf(stderr,"$");
 //Print $
 while (fgets(buff1, MAXLINE, stdin) != NULL) {
-  signal(SIGINT,myHandle1);
+   signal(SIGINT,myHandle);
   if(strlen(buff1)==1){
-   // signal(SIGINT,myHandle2);
-    fprintf(stderr,"$");  
+fprintf(stderr,"$");  
 }
 else{
 int count=strlen(buff1);
@@ -70,7 +67,7 @@ strncpy(buff2,buff1,MAXLINE);
 strncpy(buff3,buff1,MAXLINE);
 char *token = strtok(buff2," ");
 
-//
+
 add_history(history,buff1);
 
 if (strcmp("exit",token)==0) {
@@ -92,13 +89,12 @@ print_history(history);
 }
 
 else {
-
 int i=0;
 int j=0;
 bool flag =false;
 attach=true;
 err=0;
-//need=false;
+
 level=false;
 int aux;
 on=0;
@@ -109,7 +105,6 @@ memset(target1,0,65);
 memset(target2,0,65);
 char *cmd_aux[MAXLINE];
 int index1;
-
 
 for(index1=0;index1<MAXLINE;index1++){
 cmd_aux[index1]=NULL;
@@ -128,12 +123,14 @@ if((strcmp(cmdA[j],">")==0)||(strcmp(cmdA[j],"<")==0)){
 }
 
 while(cmdA[i]!=NULL){
-if(strcmp(cmdA[i],"<")==0){
+
+  if(strcmp(cmdA[i],"<")==0){
 aux=i+1;
 flag =true;
 attach=false;
 if(cmdA[aux]==NULL||cmdA[aux+1]==NULL){
 printf("Not enough input argument\n"); 
+break;
 }
 cmd_aux[aux+3]=NULL;
 if((cmdA[i+3]!=NULL) && (strcmp(cmdA[i+2],">")==0)){
@@ -142,9 +139,12 @@ level =true;
 
  
 if(level==true){
+
+  
   fileIO(cmd_aux,cmdA[i+1],cmdA[i+3],2);
-  if(err==-1){
-  printf("%d The err\n",err);
+  
+	if(err==-1){
+ 
   clear_history(history);
   free(cmdA); 
     
@@ -152,10 +152,11 @@ if(level==true){
 }
 else if(level==false){
 fileIO(cmd_aux,cmdA[i+1],cmdA[i+3],1);  
- printf("%d The err\n",err);
+ 
  
 if(err==-1){
-  clear_history(history);
+   
+clear_history(history);
 free(cmdA); 
     
   }
@@ -170,7 +171,7 @@ attach=false;
 
 if(cmdA[i+1]==NULL){
 printf("Not enough input argument\n");
-  
+break;
 }
 
 fileIO(cmd_aux,NULL,cmdA[i+1],0);
@@ -178,8 +179,8 @@ break;
 }  
 if(strcmp(cmdA[i],"|")==0){
 pipeHandler(cmdA);
-flag=true;  
 
+flag=true;  
 break;
 }  
   
@@ -193,10 +194,12 @@ cmd_aux[i]=NULL;
     
   }
   else if(on==0 &&off==1){
+  
     fileIO(cmdB,NULL,output,0);
     
   }
    else if(on==1 &&off==0){
+  
      fileIO(cmdB,in,NULL,1);
    
   }
@@ -204,6 +207,8 @@ else if(on==0&&off==0){
  attach=false;
   
 } 
+
+
 if(attach==false&&flag==false){
 
 pid_t node;
@@ -227,7 +232,8 @@ exit(1);
 else if(node>0){
 int x,exitStatus;
 	x=wait(&exitStatus);
-	printf("PID %5d exited, status = %d\n",x,exitStatus);  
+	printf("PID %5d exited, status = %d\n",x,exitStatus);
+  
 }
 }
 free(cmdA);
@@ -244,27 +250,7 @@ clear_history(history);
 
 return 0;
 }
-/*TO handle the signal 1
- */
-void myHandle1(int hand){
-  if(hand == SIGINT){
-  
-  if(strlen(buff1)==1){
-      fprintf(stderr,"\n"); 
-    }
-    else{
-    fprintf(stderr,"\n");
-    }
-   }
-}
-/*TO handle the signal 2
- */
-void myHandle2(int hand){
-  if(hand == SIGINT){
-      printf("^C\n");
-    fprintf(stderr,"$");
-  }
-}
+
 void successChange(char *token){
 token = strtok(NULL," ");
 if (token==NULL){
@@ -289,7 +275,7 @@ printf(" does not exist\n");
 
 
 /*
- * 
+ * To seperate all the arguments
  */
 
 char ** argument_sep(char *input){
@@ -318,7 +304,7 @@ char ** argument_sep(char *input){
   }
   cmd[index]=NULL;
   
- 
+
   return cmd;
 }  
 
@@ -340,13 +326,13 @@ char ** chop_exe(char *input){
   
   
   while(token !=NULL){
-  //cmd[index]=token;
+ 
   
   if(*token=='<'&&strlen(token)>1){
     int len=strlen(token)+1;
     strcpy(target1,token);
     strncpy(in,token+1,len);
-    
+   
     on=1;
     
   token= strtok(NULL," ");
@@ -363,9 +349,9 @@ char ** chop_exe(char *input){
     
      strncpy(output,token+1,len);
    
-   
-    off=1;
   
+    off=1;
+    
   token= strtok(NULL," ");
     if(token==NULL){
   
@@ -382,9 +368,7 @@ char ** chop_exe(char *input){
  
   cmd[index]=NULL;
   
-  // memset(in,0,65);
-  // memset(output,0,65);
-    
+ 
   
   return cmd;
 }  
@@ -418,22 +402,21 @@ void fileIO(char *args[],char* inputFile, char*outputFile,int option){
 			fileDescriptor = open(inputFile, O_RDONLY);  
 			if(fileDescriptor<0){
 			printf("Not found file\n");
-			 printf("%d The err\n",err);
-			exit(0);  
+			err=-1;
+			exit(1);  
 			}
 			
 			// We replace de standard input with the appropriate file
 			dup2(fileDescriptor, STDIN_FILENO);
 			close(fileDescriptor);
-			// Same as before for the output file
-					 
+			 
 		}
 		else if(option ==2){
 			fileDescriptor = open(inputFile, O_RDONLY);  
 			if(fileDescriptor<0){
 			printf("Not found file\n");
 			err=-1;
-			exit(0);  
+			exit(1);  
 			}
 			// We replace de standard input with the appropriate file
 			dup2(fileDescriptor, STDIN_FILENO);
@@ -448,11 +431,11 @@ void fileIO(char *args[],char* inputFile, char*outputFile,int option){
 		}
 		
 		execvp(args[0],args);
-			printf("err\n");
-			
-				 
+			printf("Not found command : %s \n",args[0]);
+			exit(1);	 
 	}
-	int x,exitStatus;
+	
+int x,exitStatus;
 	x=wait(&exitStatus);
 	printf("PID %5d exited, status = %d\n",x,exitStatus);
 }
@@ -462,29 +445,30 @@ void fileIO(char *args[],char* inputFile, char*outputFile,int option){
 void pipeHandler(char * args[]){
 	// File descriptors
 	int filedes[2];  // 0 input of the file and 1 output of the file 
-	int filedes2[2];
+	int filedes2[2]; // 0 input of the file and 1 output of the file 
 	int len  = 0;
 	 setbuf(stdout,NULL);
 	int num_cmds = 0;
+	int move=0;
 	int opt=-1;
-	int count=0;
-	int hit=0;
-	int track=0;
-	char *command1[MAXLINE];
-	char *command2[MAXLINE];
-	char *command3[MAXLINE];
+
+	
 	pid_t pid;
-	pid_t pid2;
-	pid_t pid3;
 	
-	//int end = 0;
 	
-	// Variables used for the different loops
-	//printf("The target1 %s\n",target1);
-	//printf("The target1 %s\n",target2);
+	char *maincmd[MAXLINE];
+	int g;
+	for (g=0;g<MAXLINE;g++){
+	maincmd[MAXLINE]=NULL; 
+	}
+	int end = 0;
+	
+	int j=0;
+	int pk;
 	
 	while (args[len] != NULL){
 	
+	  
 	  if (strcmp(args[len],"|") == 0){
 		
 		  num_cmds++;
@@ -494,27 +478,21 @@ void pipeHandler(char * args[]){
 	  
 	}
 	num_cmds++;
-	
-	
-	
-	
-	
 	if(on==1&& off==1){
-      //fileIO(args,in,output,2);
+     
 	    on=0;
 	  off=0;
 	  opt=2;
 	  
 	}
     else if(on==0 &&off==1){
-    //printf("the out %s\n",output);
-   // fileIO(args,NULL,output,0);
+   
       on=0;
       off=0;
       opt=0;
     }
    else if(on==1 &&off==0){
-    //fileIO(args,in,NULL,1);
+   
       on=0;
      off=0;
      opt=1;
@@ -522,253 +500,218 @@ void pipeHandler(char * args[]){
   }
   else if(on==0&&off==0){
       opt=-1;
-    //need =true;
+    
       attach=false;
   }
-      int k=0;
+	
+	//THe main loop to read in all the argument
+	while(args[j]!=NULL && end!=1){
+	pk=0;
+	
+	memset(maincmd,0,MAXLINE);
       
-      while(args[count]!=NULL && hit !=1){
+	while (strcmp(args[j],"|") != 0){
 	
-	  if (strcmp(args[count],target1)!=0 && strcmp(args[count],"|")!=0 ){
-		command1[k]=args[count];
-	     
-	      k++;	
-	    
-	  }
-		else if(strcmp(args[count],target1)==0 ){
-		  
-		  count++;
-		   if (track ==0 && strcmp(args[count],"|")==0){
-		    hit =1;
-		    count++;
-		  break;
-		     
-		  }  
-		  
-		  
-		}
-	  else if (strcmp(args[count],"|") == 0){
-		hit =1;
-		  count++;
-		 break;
-		}
-	   
-	    count++;	
-		
-	}
-	command1[k]=NULL;
-      
-	
-      
-     
-	  int d=0;
-	  hit=0;
-	  while(args[count]!=NULL && hit!=1&& num_cmds==3){
-	 if (strcmp(args[count],"|") == 0){
-		hit =1;
-		 count++;
-		
-		 break;
-		}
-	command3[d]=args[count];
-	count++;
-	
-	d++;
-	 }
-	command3[d]=NULL;  
-	
+	  if((strcmp(args[j],target1)==0)||(strcmp(args[j],target2)==0 )){
 	  
-	//The last command  
-	int c=0;
-	hit =0;
-	
-	while(args[count]!=NULL && hit !=1){
-	
-	  if (strcmp(args[count],target2)!=0 && strcmp(args[count],"|")!=0 ){
-		command2[c]=args[count];
-		//printf("The inpput command %s, and i %d\n",command2[c],c);
-		c++;
+	  j++;
+	 
+	  if (args[j] == NULL){
+				
+			    end = 1;
+			    break;
+			}
+	   
+	 if(strcmp(args[j],"|")==0){
+	    pk--;
 	    
 	  }
-		if(strcmp(args[count],target2)==0 ){
-		  count++;
-		  if(args[count]==NULL){
-		  
-		    break;
-		  }
-		 
-		}
-	 if (strcmp(args[count],"|") == 0){
-		hit =1;
-		 count++;
-		 break;
-		}
+	   }
 	
-	count++;
+	  if (strcmp(args[j],"|") != 0 &&args[j]!=NULL){
+	  maincmd[pk] = args[j];
+	  j++;	
 	}
-	command2[c]=NULL;
+	 
+		  if (args[j] == NULL){
+				
+			    end = 1;
+			    pk++;
+				break;
+			}
+	      pk++;
+		}
+		
+		maincmd[pk] = NULL;
+		
+		j++;	
 	
+	if (move % 2 != 0){
+			if (pipe(filedes) < 0) {
+		perror("Error creating pipe1");
+		    exit(-1);
+			  }; // for odd i
+		}else{
+			if (pipe(filedes2) < 0) {
+		    perror("Error creating pipe2");
+		    exit(-1);
+		  } // for even i
+		}
+		
 	
-	
-	if (pipe(filedes) < 0) {
-      perror("Error creating pipe");
-      exit(-1);
-      }
-	if (pipe(filedes2) < 0) {
-      perror("Error creating pipe");
-      exit(-1);
-      }
 	pid=fork();
+	if(pid==-1){			
+	if (move != num_cmds - 1){
+	if (move % 2 != 0){
+	  close(filedes[1]); // for odd i
+	}else{
+	close(filedes2[1]); // for even i
+	} 
+	    }			
+	printf("Child process could not be created\n");
+	  exit(-1);
+	  }
 	if(pid==0){
+	// If we are in the first command
+			if (move == 0){
+			
+			  close(1);
+			  //close(0);
+			dup2(filedes2[1],1);
+			  if(opt==1 ||opt ==2){
 	
-	//printf("THis is the child1\n");
-	close(1);
-	if(opt==1 ||opt ==2){
-	int filedescription1;
-	  filedescription1 = open(in, O_RDONLY,0664);  
-			if(filedescription1<0){
+		  filedes2[0] = open(in, O_RDONLY,0664);  
+			if(filedes2<0){
 			printf("Not found file\n");
 			printf("%d The err\n",err);
-			exit(0);  
+			exit(1);  
 			}
-			//close(0);
+			
 			// We replace de standard input with the appropriate file
-			dup2(filedescription1, 0);
-			close(filedescription1);
+			dup2(filedes2[0],0);
+			close(filedes2[0]);
+		  }
+			 
+			  
 	}
-	
-	
-	dup2(filedes[1],1);
-	
-	close(filedes[1]);
-	close(filedes2[0]);
-	close(filedes2[1]);
-	close(filedes[0]);
-	
-	  if ((execvp(command1[0],command1))<0) {
-	  perror("Execvp ls failed");
-	  exit(-1);
-	}
-	exit(-2);
-	}
-	 close(filedes[1]);
-	
-	 
-	 //3 commands
-	if(num_cmds==3){
-	
-	/*
-	if (pipe(filedes2) < 0) {
-      perror("Error creating pipe");
-      exit(-1);
-      }
-	*/
-	pid2=fork();
-	if(pid2==0){
-	
-	close(0);
-	dup2(filedes[0],0);
-	
-	close(1);
-	dup2(filedes2[1],1);
-	
-	close(filedes[0]);
-	close(filedes2[1]);
-	close(filedes[1]);
-	close(filedes2[0]);
-	
-	 if ((execvp(command3[0],command3))<0) {
-	  perror("Execvp ls failed");
-	  exit(-1);
-	}
-	exit(-2);
+	  else if(move==num_cmds-1){
 	  
-	}
-	close(filedes[0]);
-	close(filedes2[1]);
-	 
+	    if (num_cmds % 2 != 0){ // for odd number of commands
+					
+		  close(0);
 	
-	  pid3=fork();
-	int filedescription=0;
-	if(pid3==0){
-	close(0);
-	
-	
-	if(opt==0|| opt==2){
-	filedescription = open(output, O_CREAT | O_TRUNC | O_WRONLY, 0664); 
+		  dup2(filedes[0],0);
+
+	      if(opt==0|| opt==2){ 
+		int fd;
+		    fd= open(output, O_CREAT | O_TRUNC | O_WRONLY, 0664); 
 			
 			// Replace the standard output with the appropriate file
-			dup2(filedescription,1); 
-			close(filedescription);
+			dup2(fd, 1); 
+			close(fd);
 	  
 	}
-	dup2(filedes2[0],0);
-	
-	close(filedes2[0]);
-	close(filedes[0]);
-	close(filedes2[1]);
-	close(filedes[1]);
-	
-	  if ((execvp(command2[0],command2))<0) {
-	  perror("Execvp ls failed");
-	  exit(-1);
-	}
-	exit(-2);
-	}
-	 close(filedes2[0]);
-	 //close(filedescription);
-	}	 
+	      
+	    }else{ 
+	// for even number of commands
 	 
-	 
-	 //Only 2 commands
-	else if(num_cmds==2){ 
-	pid2=fork();
-	
-	if(pid2==0){
-	
-
 	close(0);
-	
-	dup2(filedes[0],0);
+	    dup2(filedes2[0],0);
 
 	
 	if(opt==0|| opt==2){
-	int filedescription1=0;
-	  filedescription1 = open(output, O_CREAT | O_TRUNC | O_WRONLY, 0664); 
+	filedes2[1] = open(output, O_CREAT | O_TRUNC | O_WRONLY, 0664); 
 			
 			// Replace the standard output with the appropriate file
-			dup2(filedescription1, 1); 
-			close(filedescription1);
+			dup2(filedes2[1], 1); 
+			close(filedes2[1]); 
+	}   
+	    }
+	      
+	  }
+	else{
+	if (move % 2 != 0){
+					dup2(filedes2[0],0); 
+					dup2(filedes[1],1);
+				}else{ // for even i
+					dup2(filedes[0],0); 
+					dup2(filedes2[1],1);					
+				} 
+	
 	  
 	}
-
-	close(filedes[0]);
-	
-	  if ((execvp(command2[0],command2))<0) {
-	  perror("Execvp ls failed");
-	  exit(-1);
-	}
-	exit(-2);
-	}
-	
-	 close(filedes[0]);
-	
+	if (move == 0){
+			close(filedes2[1]);
+		}
+		else if (move == num_cmds - 1){
+			if (num_cmds % 2 != 0){					
+				close(filedes[0]);
+			}else{					
+				close(filedes2[0]);
+			}
+		}else{
+			if (move % 2 != 0){					
+				close(filedes2[0]);
+				close(filedes[1]);
+			}else{					
+				close(filedes[0]);
+				close(filedes2[1]);
+			}
+		}
+	if (execvp(maincmd[0],maincmd)==-1){
+		if (move != num_cmds - 1){
+	if (move % 2 != 0){
+	  close(filedes[1]); // for odd i
+	}else{
+	close(filedes2[1]); // for even i
+	} 
+	    }			
+		fprintf(stderr,"Not found command : %s \n",maincmd[0]);
+		exit(1);
 	  
 	}
-	   
-	  //Parent
-	 int exitStatusA, exitStatusB, exitStatusC,x;
-	x=wait(&exitStatusA);
-	printf("PID %5d exited, status = %d\n",x,exitStatusA);
-	x=wait(&exitStatusB);
-	printf("PID %5d exited, status = %d\n",x,exitStatusB);
-	if(num_cmds==3){
-	x=wait(&exitStatusC);
-	printf("PID %5d exited, status = %d\n", x,exitStatusC);
-	}
+	  
+	}// CLOSING DESCRIPTORS ON PARENT
+		if (move == 0){
+			close(filedes2[1]);
+		}
+		else if (move == num_cmds - 1){
+			if (num_cmds % 2 != 0){					
+				close(filedes[0]);
+			}else{					
+				close(filedes2[0]);
+			}
+		}else{
+			if (move % 2 != 0){					
+				close(filedes2[0]);
+				close(filedes[1]);
+			}else{					
+				close(filedes[0]);
+				close(filedes2[1]);
+			}
+		}
 		
-}
+	
+	 
+	 int exitStatusA, x;
+	x=wait(&exitStatusA);
+	printf("PID %5d exited with %d\n",x,exitStatusA);
 
+	move++;
+	  
+	}
+	
+}
+/*TO handle the signal 1
+ */
+void myHandle(int hand){
+  if(hand == SIGINT){
+    fprintf(stderr,"\n");
+	} 
+}
+/*
+*To print out the token
+*/
 void printToken(char *token){
 int i = 0;
 while (token != NULL){
