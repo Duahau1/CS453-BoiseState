@@ -503,7 +503,7 @@ void pipeHandler(char * args[]){
       attach=false;
   }
 	
-	//THe main loop to read in all the argument
+	//THe loop to read in all the argument
 	while(args[j]!=NULL && end!=1){
 	pk=0;
 	
@@ -665,7 +665,9 @@ void pipeHandler(char * args[]){
 	close(filedes2[1]); // for even i
 	} 
 	    }			
-		fprintf(stderr,"Not found command : %s \n",maincmd[0]);
+		
+		fprintf(stderr,"Not found command\n");
+		
 		exit(1);
 	  
 	}
