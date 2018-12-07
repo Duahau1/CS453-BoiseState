@@ -467,10 +467,6 @@ void pipeHandler(char * args[]){
 	int pk;
 	
 	while (args[len] != NULL){
-	  if(strcmp(args[len],"*.c")==0){
-		char * ch= "smash.c";
-		 args[len]=ch;
-	  }
 	  
 	  if (strcmp(args[len],"|") == 0){
 		

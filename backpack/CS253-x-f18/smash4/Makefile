@@ -20,4 +20,4 @@ valgrind: debug
 	valgrind  --leak-check=yes --show-leak-kinds=all  smash
 
 clean:
-	rm -f *.o *.a smash 
+	rm -f *.o *.a smash *~

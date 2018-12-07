@@ -1,3 +1,0 @@
-$$$$$$$$$cat: *.h: No such file or directory
-sed: -e expression #1, char 1: unknown command: `''
-$$$$$
