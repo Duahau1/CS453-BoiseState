@@ -9,6 +9,8 @@ dox:
 	echo "Use konqueror docs/html/index.html to see docs (or any other browser)"
 
 clean:
-	echo "You need to implement this rule"
+	rm mydash
+	cd mydash-src; rm -f *.o *.d 
+
 
 
