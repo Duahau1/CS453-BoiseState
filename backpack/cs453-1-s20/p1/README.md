@@ -14,7 +14,7 @@ The program is basically a simple shell that has the ability accept arguments to
 3. README.md - Documentation of the project.
 4. Makefile - File that build the project. 
 5. valgrind.supp - The given file to suppress all the errors.
-6.
+6. TestCases     - The test plan
 
 ## Building the project
 
@@ -41,9 +41,10 @@ Checks for an environment variable DASH_PROMPT. If the environment variable is s
 ## Testing
 
 I tested it using by adding some of my test cases to the smoketestfiles folder and modify the backpack.sh file. Also I ran my test with various Linux command like pwd, wc, ps, locate, cat, find in order to test its functionality. All the tests will be in the TestCases file.
+I have manually tested all the planned test in the TestCases file as well as run all the smoke test to make sure that my program ran as expected. 
 
 ### Valgrind
-After quite a few hours spent on checking memory leak with valgrind, I have sucessfully free all the bytes that are considered definetely lost or indirectly lost; still, I am left with a huge number of memory leak that is reachable.
+After quite a few hours spent on checking memory leak with valgrind, I have sucessfully free all the bytes that are considered definetely lost or indirectly lost; still, I am left with a huge number of memory leak that is reachable. However, after some researches I found out that those memory leak was caused by third party who created the readline library and there is nothing that could be done to improve it.
 
 ### Known Bugs
 
@@ -51,17 +52,9 @@ I did not have any known bugs.
 
 ## Reflection and Self Assessment
 
-Discuss the issues you encountered during development and testing. What
-problems did you have? What did you have to research and learn on your
-own? What kinds of errors did you get? How did you fix them?
-
-What parts of the project did you find challenging? Is there anything that
-finally "clicked" for you in the process of working on this project? How well
-did the development and testing process go for you?
-
 I got a lot of segmentation dump over the place as I wrote this program. I got a problem when I was testing on ls and pwd. I first start off with using $ls -a and then after that I type $pwd and I got an error saying that my command was not valid. I then figured it out it was because I did not free each of the element in the cmd double pointer, I came back and free each of it- problem solved. I also encountered aborted core dump which took me sometimes to research to fix it, which got me to realize that I free the variable line 2 times.
 
 I realized that I understand about environment variables more than I do. The challenge is dealing with memory leak when using readline. 
 
 ## Sources used
-Instructor provided code, Past Projects in CS253(smash shell), Stackoverflow.com for dealing with segmentation dump or aborted core dump.
+Instructor provided code, Past Projects in CS253(smash shell), Stackoverflow.com for dealing with segmentation dump and aborted core dump.

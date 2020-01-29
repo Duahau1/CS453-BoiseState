@@ -14,6 +14,9 @@ void changeDir(char **token);
 const char* git_version(void);
 char** tokenizeLine(char *line);
 void freeArray(char **array);
+/** Main program that is running
+* @args: argc, *argv[]
+*/
 int main(int argc, char *argv[])
 {
   
@@ -21,9 +24,9 @@ int main(int argc, char *argv[])
     int     status;
     char    *line;    
     char    **cmd;    
-    int     numTokens;
     char    *DASH_PROMPT;
-
+    
+    // Check for git version
     if(  argc==2 && strcmp(argv[1],"-v")==0)
     {
       printf("mydash: Version 1: Revision %s (author: VanNguyen599@onyx.boisestate.edu)\n", git_version());
@@ -35,9 +38,9 @@ int main(int argc, char *argv[])
       exit(0);
     }
     char *env = getenv("DASH_PROMPT");
-    numTokens = 0;    // the number of tokens in 1 command line
-     
-    if (env == NULL){
+  
+    if (env == NULL)
+    {
       DASH_PROMPT =  "mydash>";
     }
     else
@@ -68,12 +71,7 @@ int main(int argc, char *argv[])
           free(line);
           continue;
         }
-        if (strcmp(cmd[0], "-v") == 0) 
-        {
-          printf("Version: %s \n", git_version());
-          free(line);
-          break;
-	      }
+        //Case 3 : Linux like command
         pid = fork();
         if(pid==-1)
         {
@@ -100,6 +98,9 @@ int main(int argc, char *argv[])
     }
     exit(0);
 }
+/** changDir: Change directory when typed "cd"
+* @args: ** token to change directory base on the command line
+*/
 void changeDir(char **token)
 {
   if (token[1])
@@ -128,6 +129,9 @@ void changeDir(char **token)
   }
   freeArray(token);
 }
+/** tokenizeLine: break command line into token and return array with null token at the end and all white space removed
+* @args: * line to break into tokens @return tokenized line stored in array input
+*/
 char** tokenizeLine(char *line) {
     char *nextToken;
     int i=0;
@@ -152,14 +156,17 @@ char** tokenizeLine(char *line) {
     free(temp);
     return input;
 }
+/** freeArray: free slot by slot in double pointer
+* @args: double pointer that needs to be freed
+*/
 void freeArray(char **array) {
 
   int i = 0;
-  while (array[i] != NULL) {
+  while (array[i] != NULL) 
+  {
     free(array[i]);
     i++;
-  } 
-   
+  }    
   free(array);
 }
 
