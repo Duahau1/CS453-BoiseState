@@ -15,6 +15,7 @@ The program is basically a simple shell that has the ability accept arguments to
 4. Makefile - File that build the project. 
 5. valgrind.supp - The given file to suppress all the errors.
 6. TestCases     - The test plan
+7. index.html -doxygen built file
 
 ## Building the project
 
@@ -39,9 +40,8 @@ When the shell is started with a command line argument -v, it prints out the ver
 Checks for an environment variable DASH_PROMPT. If the environment variable is set, then it uses the value as the prompt. Set the environment variable using the export command in the terminal, as shown: export DASH_PROMPT=”myprompt>”
 
 ## Testing
-
-I tested it using by adding some of my test cases to the smoketestfiles folder and modify the backpack.sh file. Also I ran my test with various Linux command like pwd, wc, ps, locate, cat, find in order to test its functionality. All the tests will be in the TestCases file.
-I have manually tested all the planned test in the TestCases file as well as run all the smoke test to make sure that my program ran as expected. 
+I initally test my work by adding a lot of print function to print out all the tokens to prvent my program from parsing special characters. I tested every functionality of the required commands to see if there is any problem.  
+I ran my test with various Linux command like pwd, wc, ps, locate, cat, find in order to test its functionality. All the tests will be in the TestCases file.I have manually tested all the planned test in the TestCases file as well as run all the smoke test to make sure that my program ran as expected. 
 
 ### Valgrind
 After quite a few hours spent on checking memory leak with valgrind, I have sucessfully free all the bytes that are considered definetely lost or indirectly lost; still, I am left with a huge number of memory leak that is reachable. However, after some researches I found out that those memory leak was caused by third party who created the readline library and there is nothing that could be done to improve it.
