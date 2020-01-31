@@ -1,4 +1,4 @@
-# Project Number/Title {#mainpage}
+# Project Number 1/Title {#mainpage}
 
 * Author: Van Nguyen
 * Class: CS453 [Operating Systems] Section #001
@@ -42,6 +42,7 @@ Checks for an environment variable DASH_PROMPT. If the environment variable is s
 ## Testing
 I initally test my work by adding a lot of print function to print out all the tokens to prvent my program from parsing special characters. I tested every functionality of the required commands to see if there is any problem.  
 I ran my test with various Linux command like pwd, wc, ps, locate, cat, find in order to test its functionality. All the tests will be in the TestCases file.I have manually tested all the planned test in the TestCases file as well as run all the smoke test to make sure that my program ran as expected. 
+I ran multiple command lines after each other in valgrind also to see if I have any errors apart from the errors caused by the readline library.
 
 ### Valgrind
 After quite a few hours spent on checking memory leak with valgrind, I have sucessfully free all the bytes that are considered definetely lost or indirectly lost; still, I am left with a huge number of memory leak that is reachable. However, after some researches I found out that those memory leak was caused by third party who created the readline library and there is nothing that could be done to improve it.
