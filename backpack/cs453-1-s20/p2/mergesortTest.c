@@ -10,6 +10,7 @@
 int check_if_sorted(int A[], int n);
 void generate_random_array(int A[], int n, int seed);
 void serial_mergesort(int A[], int p, int r); 
+void parallel_mergesort(int A[], int p, int r, int threadCount);
 void merge(int A[], int p, int q, int r);
 void insertion_sort(int A[], int p, int r);
 double getMilliSeconds(void);
@@ -58,16 +59,19 @@ int check_if_sorted(int A[], int n)
 
 int main(int argc, char **argv) {
 	
-	if (argc < 2) { // there must be at least one command-line argument
-			fprintf(stderr, "Usage: %s <input size> [<seed>] \n", argv[0]);
+	if (argc < 3) { // there must be at least one command-line argument
+			fprintf(stderr, "Usage: %s <input size> <number of threads> [<seed>] \n", argv[0]);
 			exit(1);
 	}
 	
 	int n = atoi(argv[1]);
 	int seed = 1;
-	if (argc == 3)
-		seed = atoi(argv[2]);
-		
+	int numOfThread = atoi(argv[2]);
+  //Optional seed
+  if (argc == 4)
+		{
+    seed = atoi(argv[3]);
+		}
 	int *A = (int *) malloc(sizeof(int) * (n+1)); // n+1 since we are using A[1]..A[n]
 		
 	// generate random input
@@ -79,7 +83,7 @@ int main(int argc, char **argv) {
 
 	// sort the input (and time it)
 	start_time = getMilliSeconds();
-	serial_mergesort(A,1,n);
+	parallel_mergesort(A, 1, n, numOfThread);
 	sorting_time = getMilliSeconds() - start_time;
 	
 	// print results if correctly sorted otherwise cry foul and exit
