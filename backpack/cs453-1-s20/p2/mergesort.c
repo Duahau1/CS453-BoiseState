@@ -90,6 +90,7 @@ void parallel_mergesort(int A[], int p, int r, int numOfThread)
 		parallel_mergesort(A, q + 1, r, numOfThread - 1);
 		pthread_join(thread, NULL);
 		merge(A, p, q, r);
+		free(args);
 	}
 }
 		
