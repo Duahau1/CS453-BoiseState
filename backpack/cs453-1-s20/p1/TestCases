@@ -56,3 +56,41 @@ cd jfdkjfdjfd
 exit
 #####
 
+#####Test9
+cd
+ps
+cd /tmp
+ls -l
+pwd
+#####
+
+#####Test10
+cat README.md
+wc -l README.md
+time
+cd
+exit
+#####
+
+#####Test11
+locate -c mydash.c
+vim -v
+cd 
+pwnnd
+exit
+#####
+
+#####Test12
+cd ..
+pwd
+cd jfdkjfdjfd
+<Ctrl>-d
+#####
+#####Test12
+cd ..
+pwd
+cd jfdkjfdjfd
+touch hello.txt
+rm hello.txt
+exit
+#####
