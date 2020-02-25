@@ -2,11 +2,6 @@
 #include    <stdlib.h>
 #include    "ThreadsafeBoundedList.h"
 
-/**
- *  Set up for Libraries
- *  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../list/lib:./lib 
- **/
-
 struct tsb_list 
 {
     struct list *list;
