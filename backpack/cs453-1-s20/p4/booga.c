@@ -54,7 +54,7 @@ static int booga_proc_open(struct inode *inode, struct file *file)
 {
     return single_open(file, booga_proc_show, NULL);
 }
-
+/*open the driver*/
 static int booga_open (struct inode *inode, struct file *filp)
 {
     unsigned int number = NUM(inode -> i_rdev);
@@ -96,7 +96,7 @@ static int booga_open (struct inode *inode, struct file *filp)
     try_module_get(THIS_MODULE);
     return 0;
 }
-
+/*Release the used driver*/
 static int booga_release (struct inode *inode, struct file *filp)
 {
     if(down_interruptible(&booga_device -> sem))
