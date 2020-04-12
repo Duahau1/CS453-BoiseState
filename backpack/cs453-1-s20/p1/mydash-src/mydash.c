@@ -14,6 +14,12 @@ void changeDir(char **token);
 const char* git_version(void);
 char** tokenizeLine(char *line);
 void freeArray(char **array);
+
+/** Main program that is running
+* @args: argc, *argv[]
+*/
+
+
 int main(int argc, char *argv[])
 {
   
@@ -23,7 +29,7 @@ int main(int argc, char *argv[])
     char    **cmd;    
     int     numTokens;
     char    *DASH_PROMPT;
-
+  
     if(  argc==2 && strcmp(argv[1],"-v")==0)
     {
       printf("mydash: Version 1: Revision %s (author: VanNguyen599@onyx.boisestate.edu)\n", git_version());
@@ -35,9 +41,11 @@ int main(int argc, char *argv[])
       exit(0);
     }
     char *env = getenv("DASH_PROMPT");
+
     numTokens = 0;    // the number of tokens in 1 command line
      
     if (env == NULL){
+
       DASH_PROMPT =  "mydash>";
     }
     else
@@ -59,6 +67,7 @@ int main(int argc, char *argv[])
         if(strcmp(line,"exit")==0)
         {         
           exit(0);
+
         }
         cmd = tokenizeLine(line);
         // Case 2b: The command is "cd"
@@ -68,6 +77,7 @@ int main(int argc, char *argv[])
           free(line);
           continue;
         }
+
         if (strcmp(cmd[0], "-v") == 0) 
         {
           printf("Version: %s \n", git_version());
@@ -162,6 +172,7 @@ void freeArray(char **array) {
    
   free(array);
 }
+
 
 
 /* vim: set ts=4: */
